@@ -8,10 +8,16 @@ import net.runelite.client.config.ConfigItem;
 public interface ExampleConfig extends Config
 {
 	@ConfigItem(
-		keyName = "greeting",
-		name = "Welcome Greeting",
-		description = "The message to show to the user when they login"
+			position = 1,
+			keyName = "showWorldType",
+			name = "Show the current world type",
+			description = "Toggle the display of the current world type"
 	)
+
+	default boolean showWorldType()
+	{
+		return false;
+	}
 	default String greeting()
 	{
 		return "Hello";
