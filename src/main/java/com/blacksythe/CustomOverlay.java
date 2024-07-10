@@ -6,6 +6,7 @@ import java.awt.Graphics2D;
 import java.util.EnumSet;
 import javax.inject.Inject;
 import net.runelite.api.Client;
+import net.runelite.api.Point;
 import net.runelite.api.WorldType;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayPosition;
@@ -16,13 +17,14 @@ import net.runelite.client.ui.overlay.components.LineComponent;
 class CustomOverlay extends Overlay
 {
     private final Client client;
-    private final ExampleConfig config;
+    private final VorkathRunWarningConfig config;
     private final PanelComponent panelComponent = new PanelComponent();
 
     @Inject
-    private CustomOverlay(Client client, ExampleConfig config)
+    private CustomOverlay(Client client, VorkathRunWarningConfig config)
     {
         setPosition(OverlayPosition.ABOVE_CHATBOX_RIGHT);
+        setMovable(true);
         this.client = client;
         this.config = config;
     }
@@ -33,43 +35,17 @@ class CustomOverlay extends Overlay
         panelComponent.getChildren().clear();
         String overlayTitle = "Current World:";
 
+        panelComponent.setBackgroundColor(Color.black);
         // Build overlay title
         panelComponent.getChildren().add(TitleComponent.builder()
-                .text(overlayTitle)
-                .color(Color.GREEN)
+                .text("RUN IS ENABLED")
+                .color(Color.RED)
                 .build());
 
         // Set the size of the overlay (width)
         panelComponent.setPreferredSize(new Dimension(
                 graphics.getFontMetrics().stringWidth(overlayTitle) + 30,
                 0));
-
-        // Add a line on the overlay for world number
-        panelComponent.getChildren().add(LineComponent.builder()
-                .left("Number:")
-                .right(Integer.toString(client.getWorld()))
-                .build());
-
-        // If showing world type, determine world type and add the extra line
-        if (config.showWorldType())
-        {
-            EnumSet<WorldType> worldType = client.getWorldType();
-            String currentWorldType;
-
-            if (worldType.contains(WorldType.MEMBERS))
-            {
-                currentWorldType = "Members";
-            }
-            else
-            {
-                currentWorldType = "Free";
-            }
-
-            panelComponent.getChildren().add(LineComponent.builder()
-                    .left("Type:")
-                    .right(currentWorldType)
-                    .build());
-        }
 
         return panelComponent.render(graphics);
     }
