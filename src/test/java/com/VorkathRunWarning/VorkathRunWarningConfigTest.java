@@ -1,4 +1,4 @@
-package com.blacksythe;
+package com.VorkathRunWarning;
 
 import net.runelite.client.RuneLite;
 import net.runelite.client.externalplugins.ExternalPluginManager;

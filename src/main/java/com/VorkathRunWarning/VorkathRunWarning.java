@@ -1,22 +1,16 @@
-package com.blacksythe;
+package com.VorkathRunWarning;
 
 import com.google.inject.Provides;
 import javax.inject.Inject;
-import javax.swing.plaf.ComponentUI;
 
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.Arrays;
-
 import net.runelite.api.WorldView;
-import net.runelite.api.annotations.Component;
 import net.runelite.api.coords.WorldPoint;
-import net.runelite.api.widgets.*;
 import net.runelite.client.Notifier;
 import net.runelite.client.ui.overlay.OverlayManager;
 
 import net.runelite.api.events.ClientTick;
-import net.runelite.api.ChatMessageType;
 import net.runelite.api.Client;
 import net.runelite.api.GameState;
 import net.runelite.api.events.GameStateChanged;
@@ -24,10 +18,6 @@ import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
-import net.runelite.client.game.WorldClient;
-import net.runelite.api.VarPlayer;
-import net.runelite.api.Varbits;
-import net.runelite.api.annotations.Varp;
 import net.runelite.api.events.VarbitChanged;
 @Slf4j
 @PluginDescriptor(
